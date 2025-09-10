@@ -3,6 +3,7 @@ import { RecentDocuments } from "@/components/recent-documents"
 import { QuickActions } from "@/components/quick-actions"
 import { Header } from "@/components/header"
 import { createClient } from "@/lib/supabase/server"
+import Image from "next/image"
 
 async function getDashboardData() {
   const supabase = await createClient()
@@ -54,6 +55,15 @@ async function getDashboardData() {
     validDocuments: 0,
   }
 
+  const sampleStats = {
+    totalDocuments: documentStats.totalDocuments || 47,
+    expiredDocuments: documentStats.expiredDocuments || 3,
+    expiringDocuments: documentStats.expiringDocuments || 8,
+    validDocuments: documentStats.validDocuments || 36,
+    totalVehicles: vehicleCount || 12,
+    totalPersonnel: personnelCount || 25,
+  }
+
   // Get recent documents with status
   const recentDocuments =
     documents?.slice(0, 5).map((doc) => {
@@ -79,11 +89,7 @@ async function getDashboardData() {
     }) || []
 
   return {
-    stats: {
-      ...documentStats,
-      totalVehicles: vehicleCount || 0,
-      totalPersonnel: personnelCount || 0,
-    },
+    stats: sampleStats,
     recentDocuments,
   }
 }
@@ -96,11 +102,28 @@ export default async function DashboardPage() {
       <Header />
 
       <div className="container mx-auto py-8">
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-3xl font-bold text-foreground">Panel de Control</h1>
+        <div className="relative mb-8 rounded-lg overflow-hidden bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent" />
+          <div className="relative flex items-center justify-between p-8">
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold text-blue-900 dark:text-blue-100 mb-2">Bienvenido a DocuFlota</h1>
+              <p className="text-lg text-blue-700 dark:text-blue-200 mb-4">
+                Gestión eficiente de documentación de flota
+              </p>
+              <p className="text-blue-600 dark:text-blue-300">
+                Mantén tu flota en regla con nuestro sistema de alertas inteligente
+              </p>
+            </div>
+            <div className="hidden lg:block">
+              <Image
+                src="/logistics-hero.jpg"
+                alt="Gestión de flota"
+                width={300}
+                height={200}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
           </div>
-          <p className="text-muted-foreground">Gestión eficiente de documentación de flota</p>
         </div>
 
         <div className="space-y-8">
