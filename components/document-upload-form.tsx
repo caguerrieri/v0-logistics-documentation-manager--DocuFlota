@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Upload, FileText, AlertCircle, CheckCircle } from "lucide-react"
+import { Upload, FileText, AlertCircle, CheckCircle, Truck, Users } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 interface DocumentUploadFormProps {
@@ -146,15 +146,17 @@ export function DocumentUploadForm({ onUploadComplete }: DocumentUploadFormProps
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Upload className="h-5 w-5" />
+    <Card className="w-full max-w-2xl mx-auto bg-white/80 backdrop-blur-sm border-blue-200 shadow-lg">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
+        <CardTitle className="flex items-center gap-2 text-xl">
+          <Upload className="h-6 w-6" />
           Subir Documento
         </CardTitle>
-        <CardDescription>Suba documentos de vehículos o personal con información de vencimiento</CardDescription>
+        <CardDescription className="text-blue-100">
+          Complete la información del documento para una gestión eficiente de su flota
+        </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
             <Alert variant="destructive">
@@ -171,16 +173,26 @@ export function DocumentUploadForm({ onUploadComplete }: DocumentUploadFormProps
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="file-input">Archivo *</Label>
-            <Input
-              id="file-input"
-              type="file"
-              accept=".jpg,.jpeg,.png,.webp,.pdf"
-              onChange={handleFileChange}
-              disabled={uploading}
-            />
+            <Label htmlFor="file-input" className="text-blue-900 font-medium">
+              Archivo *
+            </Label>
+            <div className="border-2 border-dashed border-blue-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+              <Input
+                id="file-input"
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,.pdf"
+                onChange={handleFileChange}
+                disabled={uploading}
+                className="hidden"
+              />
+              <label htmlFor="file-input" className="cursor-pointer">
+                <Upload className="h-8 w-8 text-blue-500 mx-auto mb-2" />
+                <p className="text-blue-700 font-medium">Haga clic para seleccionar archivo</p>
+                <p className="text-blue-600 text-sm">JPG, PNG, WEBP o PDF (máx. 10MB)</p>
+              </label>
+            </div>
             {file && (
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2 text-sm text-blue-700 bg-blue-50 p-3 rounded-lg">
                 <FileText className="h-4 w-4" />
                 {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
               </div>
@@ -189,25 +201,36 @@ export function DocumentUploadForm({ onUploadComplete }: DocumentUploadFormProps
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="category">Categoría *</Label>
+              <Label htmlFor="category" className="text-blue-900 font-medium flex items-center gap-2">
+                Categoría *
+              </Label>
               <Select value={category} onValueChange={setCategory} disabled={uploading}>
-                <SelectTrigger>
+                <SelectTrigger className="border-blue-200 focus:border-blue-400">
                   <SelectValue placeholder="Seleccionar categoría" />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat.value} value={cat.value}>
-                      {cat.label}
-                    </SelectItem>
-                  ))}
+                  <SelectItem value="vehicle">
+                    <div className="flex items-center gap-2">
+                      <Truck className="h-4 w-4 text-blue-600" />
+                      Vehículo
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="personnel">
+                    <div className="flex items-center gap-2">
+                      <Users className="h-4 w-4 text-blue-600" />
+                      Personal
+                    </div>
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="document-type">Tipo de Documento *</Label>
+              <Label htmlFor="document-type" className="text-blue-900 font-medium">
+                Tipo de Documento *
+              </Label>
               <Select value={documentType} onValueChange={setDocumentType} disabled={uploading}>
-                <SelectTrigger>
+                <SelectTrigger className="border-blue-200 focus:border-blue-400">
                   <SelectValue placeholder="Seleccionar tipo" />
                 </SelectTrigger>
                 <SelectContent>
@@ -222,63 +245,82 @@ export function DocumentUploadForm({ onUploadComplete }: DocumentUploadFormProps
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="entity-id">{category === "vehicle" ? "ID del Vehículo" : "ID del Personal"} *</Label>
+            <Label htmlFor="entity-id" className="text-blue-900 font-medium">
+              {category === "vehicle" ? "ID del Vehículo" : "ID del Personal"} *
+            </Label>
             <Input
               id="entity-id"
               value={entityId}
               onChange={(e) => setEntityId(e.target.value)}
               placeholder={category === "vehicle" ? "Ej: VEH001" : "Ej: PER001"}
               disabled={uploading}
+              className="border-blue-200 focus:border-blue-400"
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="expiration-date">Fecha de Vencimiento</Label>
+              <Label htmlFor="expiration-date" className="text-blue-900 font-medium">
+                Fecha de Vencimiento
+              </Label>
               <Input
                 id="expiration-date"
                 type="date"
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
                 disabled={uploading}
+                className="border-blue-200 focus:border-blue-400"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="document-number">Número de Documento</Label>
+              <Label htmlFor="document-number" className="text-blue-900 font-medium">
+                Número de Documento
+              </Label>
               <Input
                 id="document-number"
                 value={documentNumber}
                 onChange={(e) => setDocumentNumber(e.target.value)}
                 placeholder="Ej: 123456789"
                 disabled={uploading}
+                className="border-blue-200 focus:border-blue-400"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="issuer">Emisor</Label>
+            <Label htmlFor="issuer" className="text-blue-900 font-medium">
+              Emisor
+            </Label>
             <Input
               id="issuer"
               value={issuer}
               onChange={(e) => setIssuer(e.target.value)}
               placeholder="Ej: Municipalidad, Compañía de Seguros"
               disabled={uploading}
+              className="border-blue-200 focus:border-blue-400"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="notes">Notas Adicionales</Label>
+            <Label htmlFor="notes" className="text-blue-900 font-medium">
+              Notas Adicionales
+            </Label>
             <Textarea
               id="notes"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Información adicional sobre el documento"
               disabled={uploading}
+              className="border-blue-200 focus:border-blue-400"
             />
           </div>
 
-          <Button type="submit" disabled={uploading || !file} className="w-full">
+          <Button
+            type="submit"
+            disabled={uploading || !file}
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3"
+          >
             {uploading ? "Subiendo..." : "Subir Documento"}
           </Button>
         </form>
