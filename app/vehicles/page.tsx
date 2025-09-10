@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { VehicleCard } from "@/components/vehicle-card"
 import { VehicleDocumentsModal } from "@/components/vehicle-documents-modal"
 import { AddVehicleModal } from "@/components/add-vehicle-modal"
+import { Header } from "@/components/header"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -118,7 +119,9 @@ export default function VehiclesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
+      <Header />
+
       <div className="container mx-auto py-8">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -132,15 +135,15 @@ export default function VehiclesPage() {
 
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Vehículos</h1>
-              <p className="text-gray-600">Administre la flota de vehículos y su documentación</p>
+              <h1 className="text-3xl font-bold text-foreground mb-2">Gestión de Vehículos</h1>
+              <p className="text-muted-foreground">Administre la flota de vehículos y su documentación</p>
             </div>
             <AddVehicleModal onVehicleAdded={fetchVehicles} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 placeholder="Buscar por patente, marca o modelo..."
                 value={searchTerm}
@@ -179,11 +182,11 @@ export default function VehiclesPage() {
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">Cargando vehículos...</p>
+            <p className="text-muted-foreground">Cargando vehículos...</p>
           </div>
         ) : filteredVehicles.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 mb-4">
+            <p className="text-muted-foreground mb-4">
               {vehicles.length === 0
                 ? "No hay vehículos registrados"
                 : "No se encontraron vehículos con los filtros aplicados"}

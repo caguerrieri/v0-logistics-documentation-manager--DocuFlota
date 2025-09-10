@@ -1,7 +1,7 @@
 import { DashboardStats } from "@/components/dashboard-stats"
 import { RecentDocuments } from "@/components/recent-documents"
 import { QuickActions } from "@/components/quick-actions"
-import { NotificationBell } from "@/components/notification-bell"
+import { Header } from "@/components/header"
 import { createClient } from "@/lib/supabase/server"
 
 async function getDashboardData() {
@@ -92,14 +92,15 @@ export default async function DashboardPage() {
   const { stats, recentDocuments } = await getDashboardData()
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
+      <Header />
+
       <div className="container mx-auto py-8">
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <h1 className="text-3xl font-bold text-gray-900">Panel de Control</h1>
-            <NotificationBell />
+            <h1 className="text-3xl font-bold text-foreground">Panel de Control</h1>
           </div>
-          <p className="text-gray-600">Gestión de documentación para empresas de logística</p>
+          <p className="text-muted-foreground">Gestión eficiente de documentación de flota</p>
         </div>
 
         <div className="space-y-8">

@@ -7,8 +7,8 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Sistema de Gestión Documental - Logística",
-  description: "Plataforma para gestión y seguimiento de documentación vehicular y de personal",
+  title: "DocuFlota - Gestión de Documentación de Flota",
+  description: "Plataforma para gestión eficiente de documentación vehicular y de personal logístico",
   generator: "v0.app",
 }
 
