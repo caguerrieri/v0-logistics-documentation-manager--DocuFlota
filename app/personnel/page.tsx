@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { PersonnelCard } from "@/components/personnel-card"
 import { PersonnelDocumentsModal } from "@/components/personnel-documents-modal"
 import { AddPersonnelModal } from "@/components/add-personnel-modal"
+import { Header } from "@/components/header" // Added Header component for consistent branding
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -120,7 +121,10 @@ export default function PersonnelPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
+      {" "}
+      {/* Updated background to use theme variable */}
+      <Header /> {/* Added Header component */}
       <div className="container mx-auto py-8">
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -134,15 +138,18 @@ export default function PersonnelPage() {
 
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Personal</h1>
-              <p className="text-gray-600">Administre el personal y su documentación</p>
+              <h1 className="text-3xl font-bold text-foreground mb-2">Gestión de Personal</h1>{" "}
+              {/* Updated text color to use theme */}
+              <p className="text-muted-foreground">Administre el personal y su documentación</p>{" "}
+              {/* Updated text color to use theme */}
             </div>
             <AddPersonnelModal onPersonnelAdded={fetchPersonnel} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />{" "}
+              {/* Updated icon color to use theme */}
               <Input
                 placeholder="Buscar por nombre, DNI o email..."
                 value={searchTerm}
@@ -181,11 +188,13 @@ export default function PersonnelPage() {
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">Cargando personal...</p>
+            <p className="text-muted-foreground">Cargando personal...</p> {/* Updated text color to use theme */}
           </div>
         ) : filteredPersonnel.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 mb-4">
+            <p className="text-muted-foreground mb-4">
+              {" "}
+              {/* Updated text color to use theme */}
               {personnel.length === 0
                 ? "No hay personal registrado"
                 : "No se encontró personal con los filtros aplicados"}
