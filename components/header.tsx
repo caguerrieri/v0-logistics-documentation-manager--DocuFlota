@@ -18,7 +18,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-6">
               <Link
-                href="/fleet"
+                href="/vehicles"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 Vehículo
