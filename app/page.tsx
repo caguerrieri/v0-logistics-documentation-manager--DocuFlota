@@ -3,6 +3,7 @@ import { RecentDocuments } from "@/components/recent-documents"
 import { QuickActions } from "@/components/quick-actions"
 import { Header } from "@/components/header"
 import { createClient } from "@/lib/supabase/server"
+import Link from "next/link"
 
 async function getDashboardData() {
   const supabase = await createClient()
@@ -114,12 +115,16 @@ export default async function DashboardPage() {
                 Olvidate de vencimientos, centralizá todo en un solo lugar y evitá riesgos innecesarios.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg">
-                  Gestionar Documentos
-                </button>
-                <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg">
-                  Comenzar ahora
-                </button>
+                <Link href="/fleet">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto">
+                    Gestionar Documentos
+                  </button>
+                </Link>
+                <Link href="/fleet">
+                  <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto">
+                    Comenzar ahora
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="hidden lg:flex items-center justify-center ml-8">
