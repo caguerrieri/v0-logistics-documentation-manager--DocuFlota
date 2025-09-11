@@ -23,14 +23,12 @@ export function Header() {
               >
                 Vehículo
               </Link>
-              <a
-                href="https://v0-personal-documentation-manager.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/personal"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 Personal
-              </a>
+              </Link>
               <Link
                 href="/clients"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
