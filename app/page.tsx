@@ -115,15 +115,17 @@ export default async function DashboardPage() {
                 Olvidate de vencimientos, centralizá todo en un solo lugar y evitá riesgos innecesarios.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/fleet">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto">
-                    Gestionar Documentos
-                  </button>
+                <Link
+                  href="/fleet"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto text-center inline-block"
+                >
+                  Gestionar Documentos
                 </Link>
-                <Link href="/fleet">
-                  <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto">
-                    Comenzar ahora
-                  </button>
+                <Link
+                  href="/fleet"
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors shadow-lg w-full sm:w-auto text-center inline-block"
+                >
+                  Comenzar ahora
                 </Link>
               </div>
             </div>
