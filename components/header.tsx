@@ -18,16 +18,10 @@ export function Header() {
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-6">
               <Link
-                href="/vehicles"
+                href="/fleet"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
-                Vehículos
-              </Link>
-              <Link
-                href="/personnel"
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-              >
-                Personal
+                Flota
               </Link>
               <Link
                 href="/clients"
