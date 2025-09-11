@@ -21,8 +21,16 @@ export function Header() {
                 href="/fleet"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
               >
-                Flota
+                Vehículo
               </Link>
+              <a
+                href="https://v0-personal-documentation-manager.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                Personal
+              </a>
               <Link
                 href="/clients"
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
